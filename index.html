@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مهارت‌های زندگی و ارتباطات</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Tahoma', 'Segoe UI', sans-serif;
+    }
+
+    :root {
+        --primary: #2c5f8d;
+        --secondary: #4a90c2;
+        --accent: #f39c12;
+        --light: #f4f7fa;
+        --dark: #1a3a52;
+        --text: #333;
+    }
+
+    body {
+        background: var(--light);
+        color: var(--text);
+        line-height: 1.8;
+    }
+
+    /* هدر */
+    header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 20px 0;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+
+    .logo span {
+        color: var(--accent);
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+        padding: 5px 0;
+        border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+        border-bottom-color: var(--accent);
+        color: var(--accent);
+    }
+
+    /* هیرو */
+    .hero {
+        background: linear-gradient(135deg, rgba(44,95,141,0.95), rgba(74,144,194,0.9)),
+                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="15" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="70" r="25" fill="rgba(255,255,255,0.08)"/><circle cx="50" cy="40" r="10" fill="rgba(255,255,255,0.1)"/></svg>');
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        opacity: 0.95;
+        animation: fadeInUp 1.2s ease;
+    }
+
+    .btn {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        padding: 12px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        animation: fadeInUp 1.4s ease;
+    }
+
+    .btn:hover {
+        background: #e67e22;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(243,156,18,0.4);
+    }
+
+    /* بخش‌ها */
+    section {
+        padding: 70px 20px;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 50px;
+        font-size: 1.05rem;
+    }
+
+    /* کارت‌ها */
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px 25px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        transition: 0.4s;
+        border-top: 4px solid var(--secondary);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        border-top-color: var(--accent);
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        color: var(--primary);
+        margin-bottom: 12px;
+        font-size: 1.3rem;
+    }
+
+    .card p {
+        color: #555;
+        font-size: 0.95rem;
+    }
+
+    /* بخش مهارت‌ها با تصویر */
+    .skills-section {
+        background: white;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .skills-text h2 {
+        color: var(--primary);
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .skills-text p {
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    .skill-item {
+        margin-bottom: 20px;
+    }
+
+    .skill-item span {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    .progress-bar {
+        background: #e0e0e0;
+        height: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--secondary), var(--accent));
+        border-radius: 10px;
+        transition: width 1.5s ease;
+    }
+
+    .skills-visual {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .visual-box {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 30px 20px;
+        border-radius: 15px;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+    .visual-box:nth-child(2) {
+        background: linear-gradient(135deg, var(--accent), #e67e22);
+    }
+
+    .visual-box:nth-child(3) {
+        background: linear-gradient(135deg, #27ae60, #2ecc71);
+    }
+
+    .visual-box:nth-child(4) {
+        background: linear-gradient(135deg, #8e44ad, #9b59b6);
+    }
+
+    .visual-box:hover {
+        transform: scale(1.05);
+    }
+
+    .visual-box .num {
+        font-size: 2.2rem;
+        font-weight: bold;
+        display: block;
+    }
+
+    .visual-box .lbl {
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+
+    /* مقالات */
+    .articles {
+        background: var(--light);
+    }
+
+    .article-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        transition: 0.4s;
+    }
+
+    .article-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .article-header {
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        color: white;
+    }
+
+    .article-body {
+        padding: 25px;
+    }
+
+    .article-body h3 {
+        color: var(--primary);
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+    }
+
+    .article-body p {
+        color: #666;
+        font-size: 0.92rem;
+        margin-bottom: 15px;
+    }
+
+    .read-more {
+        color: var(--secondary);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+        transition: 0.3s;
+    }
+
+    .read-more:hover {
+        color: var(--accent);
+        padding-right: 5px;
+    }
+
+    /* فرم تماس */
+    .contact-section {
+        background: linear-gradient(135deg, var(--dark), var(--primary));
+        color: white;
+    }
+
+    .contact-section .section-title {
+        color: white;
+    }
+
+    .contact-section .section-subtitle {
+        color: rgba(255,255,255,0.8);
+    }
+
+    .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: rgba(255,255,255,0.08);
+        padding: 40px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: 0.3s;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        color: rgba(255,255,255,0.6);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        background: rgba(255,255,255,0.15);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        background: var(--accent);
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.05rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        font-family: inherit;
+    }
+
+    .submit-btn:hover {
+        background: #e67e22;
+        transform: translateY(-2px);
+    }
+
+    /* فوتر */
+    footer {
+        background: var(--dark);
+        color: rgba(255,255,255,0.8);
+        padding: 40px 20px 20px;
+        text-align: center;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+    }
+
+    .footer-links a {
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+        color: var(--accent);
+    }
+
+    .copyright {
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    /* انیمیشن */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ریسپانسیو */
+    @media (max-width: 768px) {
+        .hero h1 { font-size: 2rem; }
+        .hero p { font-size: 1rem; }
+        .section-title { font-size: 1.7rem; }
+        .skills-grid { grid-template-columns: 1fr; }
+        nav ul { gap: 15px; font-size: 0.9rem; }
+        .logo { font-size: 1.3rem; }
+        section { padding: 50px 15px; }
+        .contact-form { padding: 25px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- هدر -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">مهارت<span>یار</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">خانه</a></li>
+                    <li><a href="#skills">مهارت‌ها</a></li>
+                    <li><a href="#articles">مقالات</a></li>
+                    <li><a href="#contact">تماس</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- هیرو -->
+<section class="hero" id="home">
+    <h1>مهارت‌های زندگی و ارتباطات</h1>
+    <p>راهنمای جامع برای بهبود ارتباطات، افزایش اعتماد به نفس و توسعه مهارت‌های ضروری زندگی روزمره</p>
+    <a href="#skills" class="btn">شروع یادگیری</a>
+</section>
+
+<!-- بخش مهارت‌ها -->
+<section class="skills-section" id="skills">
+    <div class="container">
+        <h2 class="section-title">مهارت‌های کلیدی زندگی</h2>
+        <p class="section-subtitle">مهارت‌هایی که کیفیت زندگی شما را متحول می‌کنند</p>
+
+        <div class="cards">
+            <div class="card fade-in">
+                <div class="card-icon">💬</div>
+                <h3>ارتباط مؤثر</h3>
+                <p>یادگیری فنون گوش دادن فعال، بیان واضح احساسات و درک متقابل در روابط بین‌فردی.</p>
+            </div>
+
+            <div class="card fade-in">
+                <div class="card-icon">🎯</div>
+                <h3>مدیریت زمان</h3>
+                <p>اولویت‌بندی صحیح کارها، تعیین اهداف واقع‌بینانه و بهره‌وری بیشتر در زندگی شخصی و کاری.</p>
+            </div>
+
+            <div class="card fade-in">
+                <div class="card-icon">🧠</div>
+                <h3>هوش هیجانی</h3>
+                <p>شناخت و کنترل احساسات، همدلی با دیگران و مدیریت استرس در موقعیت‌های دشوار.</p>
+            </div>
+
+            <div class="card fade-in">
+                <div class="card-icon">🤝</div>
+                <h3>مذاکره و حل تعارض</h3>
+                <p>روش‌های مسالمت‌آمیز برای حل اختلافات و رسیدن به توافق‌های برد-برد در روابط.</p>
+            </div>
+
+            <div class="card fade-in">
+                <div class="card-icon">💡</div>
+                <h3>تفکر خلاق</h3>
+                <p>پرورش ایده‌های نو، حل مسئله به شیوه‌های جدید و انطباق با شرایط متغیر.</p>
+            </div>
+
+            <div class="card fade-in">
+                <div class="card-icon">🌱</div>
+                <h3>اعتماد به نفس</h3>
+                <p>شناخت نقاط قوت و ضعف، باور به توانایی‌های خود و ساختن شخصیتی قوی و مستقل.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- بخش پیشرفت مهارت‌ها -->
+<section style="background: white; padding: 70px 20px;">
+    <div class="container">
+        <div class="skills-grid">
+            <div class="skills-text fade-in">
+                <h2>سطح توسعه مهارت‌های ضروری</h2>
+                <p>با تمرین مستمر و استفاده از تکنیک‌های علمی، می‌توانید در هر یک از این حوزه‌ها پیشرفت چشمگیری داشته باشید.</p>
+
+                <div class="skill-item">
+                    <span><span>ارتباط مؤثر</span><span>۹۰٪</span></span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                </div>
+
+                <div class="skill-item">
+                    <span><span>هوش هیجانی</span><span>۸۵٪</span></span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                </div>
+
+                <div class="skill-item">
+                    <span><span>مدیریت زمان</span><span>۸۰٪</span></span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+                </div>
+
+                <div class="skill-item">
+                    <span><span>حل تعارض</span><span>۷۵٪</span></span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+                </div>
+            </div>
+
+            <div class="skills-visual fade-in">
+                <div class="visual-box">
+                    <span class="num">+۵۰۰</span>
+                    <span class="lbl">مقاله آموزشی</span>
+                </div>
+                <div class="visual-box">
+                    <span class="num">+۱۰۰۰۰</span>
+                    <span class="lbl">کاربر فعال</span>
+                </div>
+                <div class="visual-box">
+                    <span class="num">+۵۰</span>
+                    <span class="lbl">دوره تخصصی</span>
+                </div>
+                <div class="visual-box">
+                    <span class="num">۹۸٪</span>
+                    <span class="lbl">رضایت کاربران</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- مقالات -->
+<section class="articles" id="articles">
+    <div class="container">
+        <h2 class="section-title">آخرین مقالات</h2>
+        <p class="section-subtitle">مطالب آموزشی برای رشد شخصی و ارتباطی شما</p>
+
+        <div class="cards">
+            <div class="article-card fade-in">
+                <div class="article-header" style="background: linear-gradient(135deg, #667eea, #764ba2);">🗣️</div>
+                <div class="article-body">
+                    <h3>چگونه شنونده بهتری باشیم؟</h3>
+                    <p>گوش دادن فعال یکی از مهم‌ترین مهارت‌های ارتباطی است. در این مقاله با تکنیک‌های عملی برای بهبود این مهارت آشنا می‌شوید.</p>
+                    <a href="#" class="read-more">ادامه مطلب ←</a>
+                </div>
+            </div>
+
+            <div class="article-card fade-in">
+                <div class="article-header" style="background: linear-gradient(135deg, #f093fb, #f5576c);">❤️</div>
+                <div class="article-body">
+                    <h3>مدیریت هیجانات در روابط</h3>
+                    <p>یاد بگیرید چگونه احساسات خود را در موقعیت‌های دشوار کنترل کنید و روابط سالم‌تری بسازید.</p>
+                    <a href="#" class="read-more">ادامه مطلب ←</a>
+                </div>
+            </div>
+
+            <div class="article-card fade-in">
+                <div class="article-header" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">⏰</div>
+                <div class="article-body">
+                    <h3>قانون ۸۰/۲۰ در مدیریت زمان</h3>
+                    <p>چگونه با تمرکز بر ۲۰٪ کارهای مهم، ۸۰٪ نتایج را به دست آوریم. اصول پارتو در زندگی روزمره.</p>
+                    <a href="#" class="read-more">ادامه مطلب ←</a>
+                </div>
+            </div>
+
+            <div class="article-card fade-in">
+                <div class="article-header" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🌿</div>
+                <div class="article-body">
+                    <h3>تکنیک‌های کاهش استرس</h3>
+                    <p>با تمرین‌های تنفسی و ذهن‌آگاهی، استرس روزمره را کاهش دهید و آرامش بیشتری تجربه کنید.</p>
+                    <a href="#" class="read-more">ادامه مطلب ←</a>
+                </div>
+            </div>
+
+            <div class="article-card fade-in">
+                <div class="article-header" style="background: linear-gradient(135deg, #fa709a, #fee140);">💪</div>
+                <div class="article-body">
+                    <h3>ساختن اعتماد به نفس واقعی</h3>
+                    <p>اعتماد به نفس چیزی نیست که به دنیا بیاوریم، بلکه با تمرین و تکرار آن را می‌سازیم.</p>
+                    <a href="#" class="read-more">ادامه مطلب ←</a>
+                </div>
+            </div>
+
+            <div class="article-card fade-in">
+                <div class="article-header" style="background: linear-gradient(135deg, #30cfd0, #330867);">🤔</div>
+                <div class="article-body">
+                    <h3>مذاکره برد-برد چگونه ممکن است؟</h3>
+                    <p>اصول مذاکره موفق را بیاموزید و در موقعیت‌های مختلف زندگی به توافق‌های بهتر برسید.</p>
+                    <a href="#" class="read-more">ادامه مطلب ←</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- تماس -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <h2 class="section-title">با ما در تماس باشید</h2>
+        <p class="section-subtitle">سؤالات، پیشنهادات یا نظرات خود را با ما در میان بگذارید</p>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">نام و نام خانوادگی</label>
+                <input type="text" id="name" placeholder="نام خود را وارد کنید" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">ایمیل</label>
+                <input type="email" id="email" placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">پیام شما</label>
+                <textarea id="message" placeholder="پیام خود را بنویسید..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">ارسال پیام</button>
+        </form>
+    </div>
+</section>
+
+<!-- فوتر -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="#home">خانه</a>
+            <a href="#skills">مهارت‌ها</a>
+            <a href="#articles">مقالات</a>
+            <a href="#contact">تماس با ما</a>
+        </div>
+        <div class="copyright">
+            © ۱۴۰۴ - تمامی حقوق برای «مهارت‌یار» محفوظ است.
+        </div>
+    </div>
+</footer>
+
+<script>
+    // اسکرول نرم
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // انیمیشن ظهور عناصر
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // فرم
+    function handleSubmit(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        alert(`سلام ${name} عزیز! 🌟\nپیام شما با موفقیت دریافت شد.\nبه زودی با شما تماس خواهیم گرفت.`);
+        event.target.reset();
+    }
+
+    // انیمیشن نوارهای پیشرفت
+    const progressObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const fills = entry.target.querySelectorAll('.progress-fill');
+                fills.forEach(fill => {
+                    const width = fill.style.width;
+                    fill.style.width = '0';
+                    setTimeout(() => { fill.style.width = width; }, 100);
+                });
+                progressObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const skillsSection = document.querySelector('.skills-grid');
+    if (skillsSection) progressObserver.observe(skillsSection);
+</script>
+
+</body>
+</html>
